@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Crime Occurences</title>
+
+		<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+		<style type="text/css">
+
+			#map1{
+				position: absolute;
+				opacity: 0.3;
+			}
+
+			#map2{
+				position: absolute;
+				opacity: 0.7;
+			}
+
+			#vis1{
+				width: 48%;
+				float: left;
+			}
+
+			#vis2{
+				width: 48%;
+				float: right;
+			}
+		</style>
+	</head>
+    <body>
+				<div id="vis1">
+					<select name="year" id="citySelect1" onchange="load_data(1)">
+						<option  disabled >City:</option>
+						<option value="Baltimore" selected>Baltimore</option>
+				    <option value="Chicago">Chicago</option>
+				    <option value="LosAngeles">Los Angeles</option>
+			  	</select>
+					<select name="year" id="yearSelect1" onchange="load_data(1)">
+						<option  disabled >Year:</option>
+						<option value="2012">2012</option>
+				    <option value="2013" selected>2013</option>
+				    <option value="2014">2014</option>
+				    <option value="2015">2015</option>
+			  	</select>
+					<select name="year" id="timeStart1" onchange="timeCheck(1)">
+						<option  disabled >Time Start:</option>
+						<option value="0">12:00 am</option>
+				    <option value="1" >1:00 am</option>
+				    <option value="2">2:00 am</option>
+				    <option value="3">3:00 am</option>
+						<option value="4">4:00 am</option>
+						<option value="5">5:00 am</option>
+						<option value="6">6:00 am</option>
+						<option value="7">7:00 am</option>
+						<option value="8">8:00 am</option>
+						<option value="9">9:00 am</option>
+						<option value="10">10:00 am</option>
+						<option value="11">11:00 am</option>
+						<option value="12">12:00 pm</option>
+						<option value="13">1:00 pm</option>
+						<option value="14">2:00 pm</option>
+				    <option value="15" selected>3:00 pm</option>
+						<option value="16">4:00 pm</option>
+						<option value="17">5:00 pm</option>
+						<option value="18">6:00 pm</option>
+						<option value="19">7:00 pm</option>
+						<option value="20">8:00 pm</option>
+						<option value="21">9:00 pm</option>
+						<option value="22">10:00 pm</option>
+						<option value="23">11:00 pm</option>
+			  	</select>
+					<select name="year" id="timeEnd1" onchange="timeCheck(1)">
+						<option  disabled >Time End:</option>
+						<option value="0">12:00 am</option>
+				    <option value="1" >1:00 am</option>
+				    <option value="2">2:00 am</option>
+				    <option value="3">3:00 am</option>
+						<option value="4">4:00 am</option>
+						<option value="5">5:00 am</option>
+						<option value="6">6:00 am</option>
+						<option value="7">7:00 am</option>
+						<option value="8">8:00 am</option>
+						<option value="9">9:00 am</option>
+						<option value="10">10:00 am</option>
+						<option value="11">11:00 am</option>
+						<option value="12">12:00 pm</option>
+						<option value="13">1:00 pm</option>
+						<option value="14">2:00 pm</option>
+				    <option value="15">3:00 pm</option>
+						<option value="16">4:00 pm</option>
+						<option value="17">5:00 pm</option>
+						<option value="18">6:00 pm</option>
+						<option value="19">7:00 pm</option>
+						<option value="20" selected>8:00 pm</option>
+						<option value="21">9:00 pm</option>
+						<option value="22">10:00 pm</option>
+						<option value="23">11:00 pm</option>
+			  	</select>
+					<fieldset>
+					  <legend>Choose the Crimes to Be Displayed</legend>
+					    <div>
+					      <input type="checkbox" class="crimes1" name="arson" value="ARSON" checked>
+					      <label for="arson">Arson</label>
+					      <input type="checkbox" class="crimes1" name="assault" value="ASSAULT" checked>
+					      <label for="assault">Assault</label>
+					      <input type="checkbox" class="crimes1" name="auto theft" value="AUTO THEFT">
+					      <label for="auto theft">Auto Theft</label>
+					      <input type="checkbox" class="crimes1" name="burglary" value="BURGLARY" checked>
+					      <label for="burgalary">Burglary</label>
+					      <input type="checkbox" class="crimes1" name="homicide" value="HOMICIDE">
+					      <label for="homocide">Homicide</label>
+							</div>
+							<div>
+					      <input type="checkbox" class="crimes1" name="larceny" value="LARCENY">
+					      <label for="larceny">Larceny</label>
+								<input type="checkbox" class="crimes1" name="larceny from auto" value="LARCENY FROM AUTO">
+					      <label for="larceny from auto">Larceny from Auto</label>
+								<input type="checkbox" class="crimes1" name="rape" value="RAPE">
+					      <label for="rape">Rape</label>
+								<input type="checkbox" class="crimes1" name="robbery - commercial" value="ROBBERY - COMMERCIAL">
+					      <label for="robbery - commercial">Robbery - Commercial</label>
+							</div>
+							<div>
+								<input type="checkbox" class="crimes1" name="robbery - street" value="ROBBERY - STREET">
+					      <label for="robbery - street">Robbery - Street</label>
+								<input type="checkbox" class="crimes1" name="shooting" value="SHOOTING">
+					      <label for="shooting">Shooting</label>
+							</div>
+							<br>
+							<div>
+								<input type="checkbox" class="crimes1" name="all" value="ALL" onchange="setAll(1)">
+					      <label for="all">All Crimes</label>
+					      <button type="submit" onclick="load_data(1)">Filter Data</button>
+					    </div>
+					 </fieldset>
+					<div id="container1">
+	 					<img src="baltimore-map.png" id="map1" height="500">
+	 				</div>
+				</div>
+				<div id="vis2">
+					<select name="year" id="citySelect2" onchange="load_data(2)">
+						<option  disabled >City:</option>
+						<option value="Baltimore">Baltimore</option>
+				    <option value="Chicago" selected>Chicago</option>
+				    <option value="LosAngeles">Los Angeles</option>
+			  	</select>
+					<select name="year" id="yearSelect2" onchange="load_data(2)">
+						<option  disabled >Year:</option>
+						<option value="2012">2012</option>
+				    <option value="2013" selected>2013</option>
+				    <option value="2014">2014</option>
+				    <option value="2015">2015</option>
+			  	</select>
+					<select name="year" id="timeStart2" onchange="timeCheck(2)">
+						<option  disabled >Time Start:</option>
+						<option value="0">12:00 am</option>
+				    <option value="1" >1:00 am</option>
+				    <option value="2">2:00 am</option>
+				    <option value="3">3:00 am</option>
+						<option value="4">4:00 am</option>
+						<option value="5">5:00 am</option>
+						<option value="6">6:00 am</option>
+						<option value="7">7:00 am</option>
+						<option value="8">8:00 am</option>
+						<option value="9">9:00 am</option>
+						<option value="10">10:00 am</option>
+						<option value="11">11:00 am</option>
+						<option value="12">12:00 pm</option>
+						<option value="13">1:00 pm</option>
+						<option value="14">2:00 pm</option>
+				    <option value="15" selected>3:00 pm</option>
+						<option value="16">4:00 pm</option>
+						<option value="17">5:00 pm</option>
+						<option value="18">6:00 pm</option>
+						<option value="19">7:00 pm</option>
+						<option value="20">8:00 pm</option>
+						<option value="21">9:00 pm</option>
+						<option value="22">10:00 pm</option>
+						<option value="23">11:00 pm</option>
+			  	</select>
+					<select name="year" id="timeEnd2" onchange="timeCheck(2)">
+						<option  disabled >Time End:</option>
+						<option value="0">12:00 am</option>
+				    <option value="1" >1:00 am</option>
+				    <option value="2">2:00 am</option>
+				    <option value="3">3:00 am</option>
+						<option value="4">4:00 am</option>
+						<option value="5">5:00 am</option>
+						<option value="6">6:00 am</option>
+						<option value="7">7:00 am</option>
+						<option value="8">8:00 am</option>
+						<option value="9">9:00 am</option>
+						<option value="10">10:00 am</option>
+						<option value="11">11:00 am</option>
+						<option value="12">12:00 pm</option>
+						<option value="13">1:00 pm</option>
+						<option value="14">2:00 pm</option>
+				    <option value="15">3:00 pm</option>
+						<option value="16">4:00 pm</option>
+						<option value="17">5:00 pm</option>
+						<option value="18">6:00 pm</option>
+						<option value="19">7:00 pm</option>
+						<option value="20" selected>8:00 pm</option>
+						<option value="21">9:00 pm</option>
+						<option value="22">10:00 pm</option>
+						<option value="23">11:00 pm</option>
+			  	</select>
+					<fieldset>
+					  <legend>Choose the Crimes to Be Displayed</legend>
+					    <div>
+					      <input type="checkbox" class="crimes2" name="arson" value="ARSON" checked>
+					      <label for="arson">Arson</label>
+					      <input type="checkbox" class="crimes2" name="assault" value="ASSAULT" checked>
+					      <label for="assault">Assault</label>
+					      <input type="checkbox" class="crimes2" name="auto theft" value="AUTO THEFT">
+					      <label for="auto theft">Auto Theft</label>
+					      <input type="checkbox" class="crimes2" name="burglary" value="BURGLARY" checked>
+					      <label for="burgalary">Burglary</label>
+					      <input type="checkbox" class="crimes2" name="homicide" value="HOMICIDE">
+					      <label for="homocide">Homicide</label>
+							</div>
+							<div>
+					      <input type="checkbox" class="crimes2" name="larceny" value="LARCENY">
+					      <label for="larceny">Larceny</label>
+								<input type="checkbox" class="crimes2" name="larceny from auto" value="LARCENY FROM AUTO">
+					      <label for="larceny from auto">Larceny from Auto</label>
+								<input type="checkbox" class="crimes2" name="rape" value="RAPE">
+					      <label for="rape">Rape</label>
+								<input type="checkbox" class="crimes2" name="robbery - commercial" value="ROBBERY - COMMERCIAL">
+					      <label for="robbery - commercial">Robbery - Commercial</label>
+							</div>
+							<div>
+								<input type="checkbox" class="crimes2" name="robbery - street" value="ROBBERY - STREET">
+					      <label for="robbery - street">Robbery - Street</label>
+								<input type="checkbox" class="crimes2" name="shooting" value="SHOOTING">
+					      <label for="shooting">Shooting</label>
+						  </div>
+							<br>
+							<div>
+								<input type="checkbox" class="crimes2" name="all" value="ALL" onchange="setAll(2)">
+					      <label for="all">All Crimes</label>
+					      <button type="submit" onclick="load_data(2)">Filter Data</button>
+					    </div>
+					 </fieldset>
+					<div id="container2">
+ 						<img src="chicago-map.png" id="map2" height="500">
+ 					</div>
+				</div>
+		<script type="text/javascript">
+		var allCheck1 = false;
+		var allCheck2 = false;
+
+		var colors = {
+			LARCENY: "#e6194b",
+			ARSON: "#3cb44b",
+			ASSAULT: "#ffe119",
+			AUTOTHEFT: "#0082c8",
+			BURGLARY: "#f58231",
+			HOMICIDE: "#911eb4",
+			LARCENYFROMAUTO: "#46f0f0",
+			RAPE: "#f032e6",
+			ROBBERYCOMMERCIAL: "#008080",
+			ROBBERYSTREET: "#aa6e28",
+			SHOOTING: "#800000"
+		}
+
+    var svg1 = d3.select("#container1")
+          .append("svg")
+          .attr("width", 500)
+          .attr("height", 500)
+          .attr("id","mapsvg1")
+					.style("border", "1px solid black");
+		var svg2 = d3.select("#container2")
+          .append("svg")
+          .attr("width", 500)
+          .attr("height", 500)
+          .attr("id","mapsvg2")
+					.style("border", "1px solid black");
+
+		function load_data(n){
+			var ville = "citySelect" + n;
+			var fnString = "load" + document.getElementById(ville).value;
+			var fn = window[fnString]
+			if(typeof fn  === "function" && n == 1){ fn(svg1, n)};
+			if(typeof fn  === "function" && n == 2){ fn(svg2, n)};
+		}
+
+    function loadBaltimore(svg, n){
+			var annee = "yearSelect" + n;
+			var ville = "citySelect" + n;
+			var criminale = ".crimes" + n + ":checked";
+			var commence = "timeStart" + n;
+			var arrete = "timeEnd" + n;
+			var currYear = document.getElementById(annee).value;
+			var currCity = document.getElementById(ville).value;
+			var start = document.getElementById(commence).value;
+			var end = document.getElementById(arrete).value;
+			var currCSV = currCity + currYear + ".csv";
+			var filters = $(criminale).map(function() {return this.value;}).get();
+			var counter = 0;
+
+			$("#map" + n).attr("src", "baltimore-map.png")
+			$("#map" + n).css("opacity", "0.3")
+
+			svg.selectAll("*").remove();
+      d3.csv(currCSV, function(row){
+				row.forEach(function(d){
+					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
+						counter = counter + 1;
+					}
+				})
+
+				row.forEach(function(d){
+					var input = d.Description.replace(/\s/g, '');
+					input = input.replace('-', '');
+					if(filters.indexOf(d.Description) > -1  && d.Hour >= start && d.Hour <= end){
+						var x = (d.Longitude*(1) + 76.7116)*1715 + 20;
+						var y = (39.37293 - d.Latitude*(1))*2220 + 30;
+						var newCircle = svg.append("circle")
+														 .attr("cx", x)
+														 .attr("cy", y)
+														 .attr("r", 1.5)
+														 .style("fill", function(){
+															 return colors[input];
+														 })
+														 .attr("class", "point")
+														 .style("opacity", function(){
+															 return 3000/counter;
+														 });
+        	}
+				})
+				// console.log(counter);
+      })
+      console.log("done");
+    }
+		function loadChicago(svg, n){
+			var annee = "yearSelect" + n;
+			var ville = "citySelect" + n;
+			var criminale = ".crimes" + n + ":checked";
+			var commence = "timeStart" + n;
+			var arrete = "timeEnd" + n;
+			var currYear = document.getElementById(annee).value;
+			var currCity = document.getElementById(ville).value;
+			var start = document.getElementById(commence).value;
+			var end = document.getElementById(arrete).value;
+			var currCSV = currCity + currYear + ".csv";
+			var filters = $(criminale).map(function() {return this.value;}).get();
+			var counter = 0;
+
+			$("#map" + n).attr("src", "chicago-map.png")
+			$("#map" + n).css("opacity", "0.7")
+
+			svg.selectAll("*").remove();
+      d3.csv(currCSV, function(row){
+				row.forEach(function(d){
+					if(filters.indexOf(d.Description) > -1){
+						counter = counter + 1;
+					}
+				})
+        row.forEach(function(d){
+					var input = d.Description.replace(/\s/g, '');
+					input = input.replace('-', '');
+					if(filters.indexOf(d.Description) > -1){
+						console.log(start + ", " + end + ", " + d.Hour);
+						var x = (d.Longitude*(1) + 87.9343)*890 + 3;
+						var y = (42.02271 - d.Latitude*(1))*1185 + 5;
+						var newCircle = svg.append("circle")
+														 .attr("cx", x)
+														 .attr("cy", y)
+														 .attr("r", 1.5)
+														 .style("fill", function(){
+															 return colors[input];
+														 })
+														 .attr("class", "point")
+														 .style("opacity", function(){
+															 return 7000/counter;
+														 });
+        }})
+      })
+      console.log("done");
+    }
+		function loadLosAngeles(svg, n){
+			var annee = "yearSelect" + n;
+			var ville = "citySelect" + n;
+			var criminale = ".crimes" + n + ":checked";
+			var commence = "timeStart" + n;
+			var arrete = "timeEnd" + n;
+			var currYear = document.getElementById(annee).value;
+			var currCity = document.getElementById(ville).value;
+			var start = document.getElementById(commence).value;
+			var end = document.getElementById(arrete).value;
+			var currCSV = currCity + currYear + ".csv";
+			var filters = $(criminale).map(function() {return this.value;}).get();
+			var counter = 0;
+
+			$("#map" + n).attr("src", "la-map.gif")
+			$("#map" + n).css("opacity", "0.5")
+
+			svg.selectAll("*").remove();
+      d3.csv(currCSV, function(row){
+				row.forEach(function(d){
+					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
+						counter = counter + 1;
+					}
+				})
+        row.forEach(function(d){
+					var input = d.Description.replace(/\s/g, '');
+					input = input.replace('-', '');
+					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
+						var x = (d.Longitude*(1) + 118.828)*540 - 30;
+						var y = (34.7907 - d.Latitude*(1))*670 - 330;
+						var newCircle = svg.append("circle")
+														 .attr("cx", x)
+														 .attr("cy", y)
+														 .attr("r", 1.5)
+														 .style("fill", function(){
+															 return colors[input];
+														 })
+														 .attr("class", "point")
+														 .style("opacity", function(){
+															 return 4000/counter;
+														 });
+        }})
+      })
+      console.log("done");
+    }
+
+		function setAll(n){
+			switch(n) {
+				case 1:
+					if(!allCheck1){
+						$('.crimes1').prop('checked', true);
+						allCheck1 = true;
+					} else {
+						$('.crimes1').prop('checked', false);
+						allCheck1 = false;
+					}
+					break;
+				case 2:
+					if(!allCheck2){
+						$('.crimes2').prop('checked', true);
+						allCheck2 = true;
+					} else {
+						$('.crimes2').prop('checked', false);
+						allCheck2 = false;
+					}
+					break;
+			}
+		}
+
+		function timeCheck(n){
+			var start = document.getElementById("timeStart" + n).value;
+			var end = document.getElementById("timeEnd" + n).value;
+			if(start > end){
+				alert("Your start time comes after your end time. \n Please select an end time that comes after your start time");
+			} else {
+				load_data(n);
+			}
+		}
+		</script>
+	</body>
+</html>
