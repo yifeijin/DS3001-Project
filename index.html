@@ -27,24 +27,32 @@
 				width: 48%;
 				float: right;
 			}
+
+			#stopper1{
+				display: none;
+			}
+
+			#stopper2{
+				display: none;
+			}
 		</style>
 	</head>
     <body>
 				<div id="vis1">
-					<select name="year" id="citySelect1" onchange="load_data(1)">
+					<select name="year" id="citySelect1">
 						<option  disabled >City:</option>
 						<option value="Baltimore" selected>Baltimore</option>
 				    <option value="Chicago">Chicago</option>
 				    <option value="LosAngeles">Los Angeles</option>
 			  	</select>
-					<select name="year" id="yearSelect1" onchange="load_data(1)">
+					<select name="year" id="yearSelect1">
 						<option  disabled >Year:</option>
 						<option value="2012">2012</option>
 				    <option value="2013" selected>2013</option>
 				    <option value="2014">2014</option>
 				    <option value="2015">2015</option>
 			  	</select>
-					<select name="year" id="timeStart1" onchange="timeCheck(1)">
+					<select name="year" id="timeStart1">
 						<option  disabled >Time Start:</option>
 						<option value="0">12:00 am</option>
 				    <option value="1" >1:00 am</option>
@@ -71,7 +79,7 @@
 						<option value="22">10:00 pm</option>
 						<option value="23">11:00 pm</option>
 			  	</select>
-					<select name="year" id="timeEnd1" onchange="timeCheck(1)">
+					<select name="year" id="timeEnd1">
 						<option  disabled >Time End:</option>
 						<option value="0">12:00 am</option>
 				    <option value="1" >1:00 am</option>
@@ -98,6 +106,7 @@
 						<option value="22">10:00 pm</option>
 						<option value="23">11:00 pm</option>
 			  	</select>
+					<button id="scanner1" onclick="timeScan(0,1)">Scan</button>
 					<fieldset>
 					  <legend>Choose the Crimes to Be Displayed</legend>
 					    <div>
@@ -140,20 +149,20 @@
 	 				</div>
 				</div>
 				<div id="vis2">
-					<select name="year" id="citySelect2" onchange="load_data(2)">
+					<select name="year" id="citySelect2">
 						<option  disabled >City:</option>
 						<option value="Baltimore">Baltimore</option>
 				    <option value="Chicago" selected>Chicago</option>
 				    <option value="LosAngeles">Los Angeles</option>
 			  	</select>
-					<select name="year" id="yearSelect2" onchange="load_data(2)">
+					<select name="year" id="yearSelect2">
 						<option  disabled >Year:</option>
 						<option value="2012">2012</option>
 				    <option value="2013" selected>2013</option>
 				    <option value="2014">2014</option>
 				    <option value="2015">2015</option>
 			  	</select>
-					<select name="year" id="timeStart2" onchange="timeCheck(2)">
+					<select name="year" id="timeStart2">
 						<option  disabled >Time Start:</option>
 						<option value="0">12:00 am</option>
 				    <option value="1" >1:00 am</option>
@@ -180,7 +189,7 @@
 						<option value="22">10:00 pm</option>
 						<option value="23">11:00 pm</option>
 			  	</select>
-					<select name="year" id="timeEnd2" onchange="timeCheck(2)">
+					<select name="year" id="timeEnd2">
 						<option  disabled >Time End:</option>
 						<option value="0">12:00 am</option>
 				    <option value="1" >1:00 am</option>
@@ -207,6 +216,7 @@
 						<option value="22">10:00 pm</option>
 						<option value="23">11:00 pm</option>
 			  	</select>
+					<button id="scanner2" onclick="timeScan(0,2)">Scan</button>
 					<fieldset>
 					  <legend>Choose the Crimes to Be Displayed</legend>
 					    <div>
@@ -251,6 +261,8 @@
 		<script type="text/javascript">
 		var allCheck1 = false;
 		var allCheck2 = false;
+		var stop1 = false;
+		var stop2 = false;
 
 		var colors = {
 			LARCENY: "#e6194b",
@@ -458,6 +470,15 @@
 			} else {
 				load_data(n);
 			}
+		}
+
+		function timeScan(i,n){
+				setTimeout(function(){
+					$('#timeStart' + n).val(i);
+					$('#timeEnd' + n).val(i);
+					load_data(n);
+				}, 2000*i)
+				if(i<23){i++; timeScan(i,n)}
 		}
 		</script>
 	</body>
