@@ -355,15 +355,14 @@
 			svg.selectAll("*").remove();
       d3.csv(currCSV, function(row){
 				row.forEach(function(d){
-					if(filters.indexOf(d.Description) > -1){
+					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
 						counter = counter + 1;
 					}
 				})
         row.forEach(function(d){
 					var input = d.Description.replace(/\s/g, '');
 					input = input.replace('-', '');
-					if(filters.indexOf(d.Description) > -1){
-						console.log(start + ", " + end + ", " + d.Hour);
+					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
 						var x = (d.Longitude*(1) + 87.9343)*890 + 3;
 						var y = (42.02271 - d.Latitude*(1))*1185 + 5;
 						var newCircle = svg.append("circle")
@@ -409,8 +408,8 @@
 					var input = d.Description.replace(/\s/g, '');
 					input = input.replace('-', '');
 					if(filters.indexOf(d.Description) > -1 && d.Hour >= start && d.Hour <= end){
-						var x = (d.Longitude*(1) + 118.828)*540 - 30;
-						var y = (34.7907 - d.Latitude*(1))*670 - 330;
+						var x = (d.Longitude*(1) + 118.828)*590 - 85;
+						var y = (34.7907 - d.Latitude*(1))*670 - 300;
 						var newCircle = svg.append("circle")
 														 .attr("cx", x)
 														 .attr("cy", y)
