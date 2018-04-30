@@ -452,7 +452,8 @@
 		function timeCheck(n){
 			var start = document.getElementById("timeStart" + n).value;
 			var end = document.getElementById("timeEnd" + n).value;
-			if(start > end){
+			console.log(start + ", " + end);
+			if(parseInt(start) > parseInt(end)){
 				alert("Your start time comes after your end time. \n Please select an end time that comes after your start time");
 			} else {
 				load_data(n);
