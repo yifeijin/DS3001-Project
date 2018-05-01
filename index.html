@@ -15,7 +15,7 @@
 
 			#map2{
 				position: absolute;
-				opacity: 0.7;
+				opacity: 0.5;
 			}
 
 			#vis1{
@@ -39,7 +39,7 @@
 	</head>
     <body>
 				<div id="vis1">
-					<select name="year" id="citySelect1">
+					<select name="city" id="citySelect1">
 						<option  disabled >City:</option>
 						<option value="Baltimore" selected>Baltimore</option>
 				    <option value="Chicago">Chicago</option>
@@ -52,7 +52,7 @@
 				    <option value="2014">2014</option>
 				    <option value="2015">2015</option>
 			  	</select>
-					<select name="year" id="timeStart1">
+					<select name="start" id="timeStart1">
 						<option  disabled >Time Start:</option>
 						<option value="0">12:00 am</option>
 				    <option value="1" >1:00 am</option>
@@ -81,61 +81,61 @@
 			  	</select>
 					<select name="year" id="timeEnd1">
 						<option  disabled >Time End:</option>
-						<option value="0">12:00 am</option>
-				    <option value="1" >1:00 am</option>
-				    <option value="2">2:00 am</option>
-				    <option value="3">3:00 am</option>
-						<option value="4">4:00 am</option>
-						<option value="5">5:00 am</option>
-						<option value="6">6:00 am</option>
-						<option value="7">7:00 am</option>
-						<option value="8">8:00 am</option>
-						<option value="9">9:00 am</option>
-						<option value="10">10:00 am</option>
-						<option value="11">11:00 am</option>
-						<option value="12">12:00 pm</option>
-						<option value="13">1:00 pm</option>
-						<option value="14">2:00 pm</option>
-				    <option value="15">3:00 pm</option>
-						<option value="16">4:00 pm</option>
-						<option value="17">5:00 pm</option>
-						<option value="18">6:00 pm</option>
-						<option value="19">7:00 pm</option>
-						<option value="20" selected>8:00 pm</option>
-						<option value="21">9:00 pm</option>
-						<option value="22">10:00 pm</option>
-						<option value="23">11:00 pm</option>
+						<option value="0">12:59 am</option>
+				    <option value="1" >1:59 am</option>
+				    <option value="2">2:59 am</option>
+				    <option value="3">3:59 am</option>
+						<option value="4">4:59 am</option>
+						<option value="5">5:59 am</option>
+						<option value="6">6:59 am</option>
+						<option value="7">7:59 am</option>
+						<option value="8">8:59 am</option>
+						<option value="9">9:59 am</option>
+						<option value="10">10:59 am</option>
+						<option value="11">11:59 am</option>
+						<option value="12">12:59 pm</option>
+						<option value="13">1:59 pm</option>
+						<option value="14">2:59 pm</option>
+				    <option value="15">3:59 pm</option>
+						<option value="16">4:59 pm</option>
+						<option value="17">5:59 pm</option>
+						<option value="18">6:59 pm</option>
+						<option value="19">7:59 pm</option>
+						<option value="20" selected>8:59 pm</option>
+						<option value="21">9:59 pm</option>
+						<option value="22">10:59 pm</option>
+						<option value="23">11:59 pm</option>
 			  	</select>
 					<button id="scanner1" onclick="timeScan(0,1)">Scan</button>
-					<fieldset>
-					  <legend>Choose the Crimes to Be Displayed</legend>
+					<fieldset style="background: tan;">
 					    <div>
+								<legend>Choose the Crimes to Be Displayed</legend><br>
 					      <input type="checkbox" class="crimes1" name="arson" value="ARSON" checked>
-					      <label for="arson">Arson</label>
+					      <label for="arson" style="color:#3cb44b;">Arson</label>
 					      <input type="checkbox" class="crimes1" name="assault" value="ASSAULT" checked>
-					      <label for="assault">Assault</label>
+					      <label for="assault" style="color:#ffe119;">Assault</label>
 					      <input type="checkbox" class="crimes1" name="auto theft" value="AUTO THEFT">
-					      <label for="auto theft">Auto Theft</label>
+					      <label for="auto theft" style="color:#0082c8;">Auto Theft</label>
 					      <input type="checkbox" class="crimes1" name="burglary" value="BURGLARY" checked>
-					      <label for="burgalary">Burglary</label>
+					      <label for="burgalary" style="color:#f58231;">Burglary</label>
 					      <input type="checkbox" class="crimes1" name="homicide" value="HOMICIDE">
-					      <label for="homocide">Homicide</label>
+					      <label for="homocide" style="color:#911eb4;">Homicide</label>
 							</div>
 							<div>
 					      <input type="checkbox" class="crimes1" name="larceny" value="LARCENY">
-					      <label for="larceny">Larceny</label>
+					      <label for="larceny" style="color:#e6194b;">Larceny</label>
 								<input type="checkbox" class="crimes1" name="larceny from auto" value="LARCENY FROM AUTO">
-					      <label for="larceny from auto">Larceny from Auto</label>
+					      <label for="larceny from auto" style="color:#46f0f0;">Larceny from Auto</label>
 								<input type="checkbox" class="crimes1" name="rape" value="RAPE">
-					      <label for="rape">Rape</label>
+					      <label for="rape" style="color:#f032e6;">Rape</label>
 								<input type="checkbox" class="crimes1" name="robbery - commercial" value="ROBBERY - COMMERCIAL">
-					      <label for="robbery - commercial">Robbery - Commercial</label>
+					      <label for="robbery - commercial" style="color:#008080;">Robbery - Commercial</label>
 							</div>
 							<div>
 								<input type="checkbox" class="crimes1" name="robbery - street" value="ROBBERY - STREET">
-					      <label for="robbery - street">Robbery - Street</label>
+					      <label for="robbery - street" style="color:#aa6e28;">Robbery - Street</label>
 								<input type="checkbox" class="crimes1" name="shooting" value="SHOOTING">
-					      <label for="shooting">Shooting</label>
+					      <label for="shooting" style="color:#800000;">Shooting</label>
 							</div>
 							<br>
 							<div>
@@ -152,8 +152,8 @@
 					<select name="year" id="citySelect2">
 						<option  disabled >City:</option>
 						<option value="Baltimore">Baltimore</option>
-				    <option value="Chicago" selected>Chicago</option>
-				    <option value="LosAngeles">Los Angeles</option>
+				    <option value="Chicago" >Chicago</option>
+				    <option value="LosAngeles"selected>Los Angeles</option>
 			  	</select>
 					<select name="year" id="yearSelect2">
 						<option  disabled >Year:</option>
@@ -191,78 +191,79 @@
 			  	</select>
 					<select name="year" id="timeEnd2">
 						<option  disabled >Time End:</option>
-						<option value="0">12:00 am</option>
-				    <option value="1" >1:00 am</option>
-				    <option value="2">2:00 am</option>
-				    <option value="3">3:00 am</option>
-						<option value="4">4:00 am</option>
-						<option value="5">5:00 am</option>
-						<option value="6">6:00 am</option>
-						<option value="7">7:00 am</option>
-						<option value="8">8:00 am</option>
-						<option value="9">9:00 am</option>
-						<option value="10">10:00 am</option>
-						<option value="11">11:00 am</option>
-						<option value="12">12:00 pm</option>
-						<option value="13">1:00 pm</option>
-						<option value="14">2:00 pm</option>
-				    <option value="15">3:00 pm</option>
-						<option value="16">4:00 pm</option>
-						<option value="17">5:00 pm</option>
-						<option value="18">6:00 pm</option>
-						<option value="19">7:00 pm</option>
-						<option value="20" selected>8:00 pm</option>
-						<option value="21">9:00 pm</option>
-						<option value="22">10:00 pm</option>
-						<option value="23">11:00 pm</option>
+						<option value="0">12:59 am</option>
+				    <option value="1" >1:59 am</option>
+				    <option value="2">2:59 am</option>
+				    <option value="3">3:59 am</option>
+						<option value="4">4:59 am</option>
+						<option value="5">5:59 am</option>
+						<option value="6">6:59 am</option>
+						<option value="7">7:59 am</option>
+						<option value="8">8:59 am</option>
+						<option value="9">9:59 am</option>
+						<option value="10">10:59 am</option>
+						<option value="11">11:59 am</option>
+						<option value="12">12:59 pm</option>
+						<option value="13">1:59 pm</option>
+						<option value="14">2:59 pm</option>
+				    <option value="15">3:59 pm</option>
+						<option value="16">4:59 pm</option>
+						<option value="17">5:59 pm</option>
+						<option value="18">6:59 pm</option>
+						<option value="19">7:59 pm</option>
+						<option value="20" selected>8:59 pm</option>
+						<option value="21">9:59 pm</option>
+						<option value="22">10:59 pm</option>
+						<option value="23">11:59 pm</option>
 			  	</select>
 					<button id="scanner2" onclick="timeScan(0,2)">Scan</button>
-					<fieldset>
-					  <legend>Choose the Crimes to Be Displayed</legend>
-					    <div>
-					      <input type="checkbox" class="crimes2" name="arson" value="ARSON" checked>
-					      <label for="arson">Arson</label>
-					      <input type="checkbox" class="crimes2" name="assault" value="ASSAULT" checked>
-					      <label for="assault">Assault</label>
-					      <input type="checkbox" class="crimes2" name="auto theft" value="AUTO THEFT">
-					      <label for="auto theft">Auto Theft</label>
-					      <input type="checkbox" class="crimes2" name="burglary" value="BURGLARY" checked>
-					      <label for="burgalary">Burglary</label>
-					      <input type="checkbox" class="crimes2" name="homicide" value="HOMICIDE">
-					      <label for="homocide">Homicide</label>
+					<fieldset style="background: tan;">
+							<div>
+								<legend>Choose the Crimes to Be Displayed</legend><br>
+								<input type="checkbox" class="crimes2" name="arson" value="ARSON" checked>
+								<label for="arson" style="color:#3cb44b;">Arson</label>
+								<input type="checkbox" class="crimes2" name="assault" value="ASSAULT" checked>
+								<label for="assault" style="color:#ffe119;">Assault</label>
+								<input type="checkbox" class="crimes2" name="auto theft" value="AUTO THEFT">
+								<label for="auto theft" style="color:#0082c8;">Auto Theft</label>
+								<input type="checkbox" class="crimes2" name="burglary" value="BURGLARY" checked>
+								<label for="burgalary" style="color:#f58231;">Burglary</label>
+								<input type="checkbox" class="crimes2" name="homicide" value="HOMICIDE">
+								<label for="homocide" style="color:#911eb4;">Homicide</label>
 							</div>
 							<div>
-					      <input type="checkbox" class="crimes2" name="larceny" value="LARCENY">
-					      <label for="larceny">Larceny</label>
+								<input type="checkbox" class="crimes2" name="larceny" value="LARCENY">
+								<label for="larceny" style="color:#e6194b;">Larceny</label>
 								<input type="checkbox" class="crimes2" name="larceny from auto" value="LARCENY FROM AUTO">
-					      <label for="larceny from auto">Larceny from Auto</label>
+								<label for="larceny from auto" style="color:#46f0f0;">Larceny from Auto</label>
 								<input type="checkbox" class="crimes2" name="rape" value="RAPE">
-					      <label for="rape">Rape</label>
+								<label for="rape" style="color:#f032e6;">Rape</label>
 								<input type="checkbox" class="crimes2" name="robbery - commercial" value="ROBBERY - COMMERCIAL">
-					      <label for="robbery - commercial">Robbery - Commercial</label>
+								<label for="robbery - commercial" style="color:#008080;">Robbery - Commercial</label>
 							</div>
 							<div>
 								<input type="checkbox" class="crimes2" name="robbery - street" value="ROBBERY - STREET">
-					      <label for="robbery - street">Robbery - Street</label>
+								<label for="robbery - street" style="color:#aa6e28;">Robbery - Street</label>
 								<input type="checkbox" class="crimes2" name="shooting" value="SHOOTING">
-					      <label for="shooting">Shooting</label>
-						  </div>
+								<label for="shooting" style="color:#800000;">Shooting</label>
+							</div>
 							<br>
 							<div>
 								<input type="checkbox" class="crimes2" name="all" value="ALL" onchange="setAll(2)">
-					      <label for="all">All Crimes</label>
-					      <button type="submit" onclick="load_data(2)">Filter Data</button>
-					    </div>
+								<label for="all">All Crimes</label>
+								<button type="submit" onclick="load_data(2)">Filter Data</button>
+							</div>
 					 </fieldset>
 					<div id="container2">
  						<img src="chicago-map.png" id="map2" height="500">
  					</div>
 				</div>
+				<div>
+					<!-- <img src="chicago-map.png"> -->
+				</div>
 		<script type="text/javascript">
 		var allCheck1 = false;
 		var allCheck2 = false;
-		var stop1 = false;
-		var stop2 = false;
 
 		var colors = {
 			LARCENY: "#e6194b",
@@ -362,7 +363,7 @@
 			var counter = 0;
 
 			$("#map" + n).attr("src", "chicago-map.png")
-			$("#map" + n).css("opacity", "0.7")
+			$("#map" + n).css("opacity", "0.5")
 
 			svg.selectAll("*").remove();
       d3.csv(currCSV, function(row){
@@ -386,7 +387,7 @@
 														 })
 														 .attr("class", "point")
 														 .style("opacity", function(){
-															 return 7000/counter;
+															 return 5000/counter;
 														 });
         }})
       })
@@ -420,8 +421,8 @@
 					var input = d.Description.replace(/\s/g, '');
 					input = input.replace('-', '');
 					if(filters.indexOf(d.Description) > -1 && parseInt(d.Hour) >= start && parseInt(d.Hour) <= end){
-						var x = (d.Longitude*(1) + 118.828)*590 - 85;
-						var y = (34.7907 - d.Latitude*(1))*670 - 300;
+						var x = (d.Longitude*(1) + 118.828)*510 - 45;
+						var y = (34.7907 - d.Latitude*(1))*685 - 305;
 						var newCircle = svg.append("circle")
 														 .attr("cx", x)
 														 .attr("cy", y)
