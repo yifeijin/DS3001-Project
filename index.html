@@ -293,11 +293,13 @@
 					.style("border", "1px solid black");
 
 		function load_data(n){
+			timeCheck(n);
 			var ville = "citySelect" + n;
 			var fnString = "load" + document.getElementById(ville).value;
 			var fn = window[fnString]
 			if(typeof fn  === "function" && n == 1){ fn(svg1, n)};
 			if(typeof fn  === "function" && n == 2){ fn(svg2, n)};
+
 		}
 
     function loadBaltimore(svg, n){
@@ -465,11 +467,9 @@
 		function timeCheck(n){
 			var start = parseInt(document.getElementById("timeStart" + n).value);
 			var end = parseInt(document.getElementById("timeEnd" + n).value);
-			console.log(start + ", " + end);
+			// console.log(start + ", " + end);
 			if(start > end){
 				alert("Your start time comes after your end time. \n Please select an end time that comes after your start time");
-			} else {
-				load_data(n);
 			}
 		}
 
